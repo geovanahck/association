@@ -56,9 +56,6 @@
             </span>
           <% end %>
         </td>
-        <td class="text-end align-middle">
-          <%= person.total_debts %>
-        </td>
         <td class="text-center align-middle">
           <div class="btn-group" role="group" aria-label="Actions">
             <%= link_to person, class: "btn btn-sm btn-primary" do %>
@@ -71,7 +68,8 @@
         </td>
       </tr>
     <% end %>
+    
+    
   </tbody>
 </table>
-
-<%= will_paginate @people %>
+<%= will_paginate @people%>

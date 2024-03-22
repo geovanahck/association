@@ -3,6 +3,14 @@ source "https://rubygems.org"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
 
+gem 'faker'
+
+gem 'drb', '2.2.1'
+
+gem 'rails_performance'
+
+gem 'will_paginate', '~> 4.0'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
