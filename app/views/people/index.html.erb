@@ -21,6 +21,8 @@
   </li>
 </ul>
 
+<%= will_paginate @people %>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -30,6 +32,7 @@
       <th>Cadastrado em</th>
       <th>Cadastrado por</th>
       <th>Ativo</th>
+      <th>Débitos</th>
       <th></th>
     </tr>
   </thead>
@@ -53,6 +56,7 @@
             </span>
           <% end %>
         </td>
+
         <td class="text-center align-middle">
           <div class="btn-group" role="group" aria-label="Actions">
             <%= link_to person, class: "btn btn-sm btn-primary" do %>
@@ -65,5 +69,8 @@
         </td>
       </tr>
     <% end %>
+    
+    
   </tbody>
 </table>
+<%= will_paginate @people%>

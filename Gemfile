@@ -3,6 +3,14 @@ source "https://rubygems.org"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
 
+gem 'faker'
+
+gem 'drb', '2.2.1'
+
+gem 'rails_performance'
+
+gem 'will_paginate', '~> 4.0'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -49,6 +57,12 @@ gem "cpf_cnpj"
 gem 'devise'
 gem "devise-i18n"
 gem "devise-bootstrap5"
+
+gem 'faker'
+
+gem 'rails_performance'
+
+gem 'will_paginate', '~> 4.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
