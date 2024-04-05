@@ -14,7 +14,7 @@ class PeopleController < ApplicationController
     else
       @active = true
     end
-    @people = Person.where(active: @active).paginate(page: params[:page], per_page: 30)
+    @people = Person.includes(:user).where(active: @active).paginate(page: params[:page], per_page: 30)
   
   end
 
