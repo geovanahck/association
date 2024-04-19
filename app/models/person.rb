@@ -13,15 +13,21 @@ class Person < ApplicationRecord
   # - improve performance using SQL
   # - sum payments
   # - rename to "balance"
-  def total_debts
-    total = 0
+  def balance
+    saldo = 0
 
     debts.each do |debt|
-      total -= debt.amount
+      saldo -= debt.amount
+      
     end
+    payments.each do |payment|
+      saldo += payment.amount
 
-    total
+      
   end
+  saldo
+end
+
 
   private
 
