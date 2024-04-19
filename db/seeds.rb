@@ -1,6 +1,7 @@
 puts "Destroying existing records..."
 User.destroy_all
 Debt.destroy_all
+Payment.destroy_all 
 Person.destroy_all
 
 User.create email: 'admin@admin.com', password: '111111'
@@ -14,7 +15,7 @@ puts "111111"
   User.create email: Faker::Internet.email, password: '111111'
 end
 
-1000.times do |counter|
+100.times do |counter|
   puts "Inserting Person #{counter}"
 
   attrs = {
@@ -31,6 +32,14 @@ end
     person.debts.create(
       amount: Faker::Number.between(from: 1, to: 200),
       observation: Faker::Lorem.paragraph
+    )
+  end
+
+  5.times do |payment_counter|
+    puts "Inserting Debt #{payment_counter}"
+    person.payments.create(
+      amount: Faker::Number.between(from: 1, to: 200),
+      paid_at: Faker::Date.between(from: 1.year.ago, to: Date.today)
     )
   end
 end
