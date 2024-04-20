@@ -13,21 +13,17 @@ class Person < ApplicationRecord
   # - improve performance using SQL
   # - sum payments
   # - rename to "balance"
-  def balance
-    saldo = 0
 
-    debts.each do |debt|
-      saldo -= debt.amount
-      
-    end
-    payments.each do |payment|
-      saldo += payment.amount
-
-      
+def balance_cache
+  Rails.cache.fetch("#{id}/balance", expires_in: 30.minutes ) do
+    payments.sum(:amount) - debts.sum(:amount)
   end
-  saldo
 end
 
+def update_cache_balance(amount)
+  new_balance = balance_cache()+ amount
+  Rails.cache.write("#{id}/balance", new_balance)
+end
 
   private
 
