@@ -5,6 +5,8 @@ gem "rails", "~> 7.1.3"
 
 gem 'faker'
 
+gem "chartkick"
+
 gem 'drb', '2.2.1'
 
 gem 'rails_performance'
@@ -57,8 +59,6 @@ gem "cpf_cnpj"
 gem 'devise'
 gem "devise-i18n"
 gem "devise-bootstrap5"
-
-gem 'faker'
 
 gem 'rails_performance'
 
