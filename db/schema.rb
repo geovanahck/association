@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_225608) do
     t.text "observation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["amount"], name: "index_debts_on_amount_partial"
     t.index ["person_id"], name: "index_debts_on_person_id"
   end
 
@@ -37,6 +38,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_225608) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.index ["active"], name: "index_people_on_active"
     t.index ["user_id"], name: "index_people_on_user_id"
   end
 
