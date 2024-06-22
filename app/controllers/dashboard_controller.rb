@@ -2,39 +2,46 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @active_people_pie_chart = {
-      active: Person.where(active: true).count,
-      inactive: Person.where(active: false).count
-    }
+    @dashboard_service = DashboardService.new(current_user)
+  end
 
-    # Total somando todos associados ativos
-    active_people_ids = Person.where(active: true).select(:id)
-    @total_debts = Debt.where(person_id: active_people_ids).sum(:amount)
-    @total_payments = Payment.where(person_id: active_people_ids).sum(:amount)
-    @balance_cache = @total_payments - @total_debts
+  def active_people_pie_chart
+    @dashboard_service.active_people_pie_chart
+  end
 
-    # últimos lançamentos
-    # no formato somente id + amount para o kickchart
-    @last_debts = Debt.order(created_at: :desc).limit(10).map do |debt|
-      [debt.id, debt.amount]
-    end
-    @last_payments = Payment.order(created_at: :desc).limit(10).map do |payment|
-      [payment.id, payment.amount]
-    end
+  def total_debts
+    @dashboard_service.total_debts
+  end
 
-    # últimos associados cadastrados pelo usuário atual
-    @my_people = Person.where(user: current_user).order(:created_at).limit(10)
+  def total_payments
+    @dashboard_service.total_payments
+  end
 
-    people = Person.all.select do |person|
-      person.balance_cache > 0
-    end.sort_by do |person|
-      person.balance_cache
-    end
+  def amount
+    @dashboard_service.amount
+  end
 
-    # associado com maior saldo
-    @top_person = people.last
+  def last_debts
+    @dashboard_service.last_debts
+  end
 
-    # associado com menor saldo
-    @bottom_person = people.first
+  def last_payments
+    @dashboard_service.last_payments
+  end
+
+  def my_people
+    @dashboard_service.my_people
+  end
+
+  def top_person
+    @dashboard_service.top_person
+  end
+
+  def bottom_person
+    @dashboard_service.bottom_person
+  end
+  
+  def last_large_debts
+    @last_large_debts = @dashboard_service.last_large_debts
   end
 end

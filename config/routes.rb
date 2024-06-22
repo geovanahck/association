@@ -1,9 +1,13 @@
+require 'sidekiq'
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   get 'dashboard/index'
   resources :payments
   devise_for :users
-
   resources :debts, except: %i(edit update show)
+  mount Sidekiq::Web => '/sidekiq'
 
   resources :people do
     collection do
@@ -19,4 +23,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'dashboard#index'
+  
+  get 'reports/balance'
+ 
+
 end

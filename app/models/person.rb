@@ -25,6 +25,18 @@ def update_cache_balance(amount)
   Rails.cache.write("#{id}/balance", new_balance)
 end
 
+require 'csv'
+
+def self.to_excel
+  attributes = %w{ name balance_cache}
+  CSV.generate(headers:true) do |csv|
+    csv << attributes
+      order(:name).each do |person|
+      csv << attributes.map{ |attr| person.send(attr) }
+    end
+  end
+end
+
   private
 
   def cpf_or_cnpj
@@ -33,3 +45,4 @@ end
     end
   end
 end
+
